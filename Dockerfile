@@ -18,8 +18,8 @@ RUN groupadd --gid 1000 cli-user && \
 
 USER cli-user
 ENV NVM_DIR /home/cli-user/nvm
-ENV NODE_VERSION v6.9.0
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash && \
+ENV NODE_VERSION v7.4.0
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
 	source $NVM_DIR/nvm.sh && \
 	nvm install $NODE_VERSION && \
 	nvm alias default $NODE_VERSION && \
