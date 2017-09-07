@@ -13,6 +13,15 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum -y --setopt=tsflags=nodocs groupinstall 'Development Tools' && \
     yum clean all
 
+RUN curl -L -s https://getcomposer.org/composer.phar -o /usr/local/bin/composer && \
+    chmod +x /usr/local/bin/composer
+
+RUN curl -L -s http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer && \
+    chmod +x /usr/local/bin/php-cs-fixer
+
+RUN curl -L -s https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit && \
+    chmod +x /usr/local/bin/phpunit
+
 RUN groupadd --gid 1000 cli-user && \
 	adduser -u 1000 -g 1000 cli-user 
 
