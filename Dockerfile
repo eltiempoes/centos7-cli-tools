@@ -13,6 +13,9 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum -y --setopt=tsflags=nodocs groupinstall 'Development Tools' && \
     yum clean all
 
+RUN yum -y --setopt=tsflags=nodocs install grib_api && \
+    yum clean all
+
 RUN curl -L -s https://getcomposer.org/composer.phar -o /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer
 
