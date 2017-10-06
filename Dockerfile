@@ -25,6 +25,11 @@ RUN curl -L -s https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit &&
 RUN groupadd --gid 1000 cli-user && \
 	adduser -u 1000 -g 1000 cli-user 
 
+RUN yum -y --setopt=tsflags=nodocs install sudo
+
+RUN echo "cli-user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/cli-user && \
+    chmod 0440 /etc/sudoers.d/cli-user
+
 USER cli-user
 ENV NVM_DIR /home/cli-user/nvm
 ENV NODE_VERSION v7.4.0
