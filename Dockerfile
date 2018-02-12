@@ -1,4 +1,5 @@
 FROM centos:7
+ENV REFRESHED_AT 2018-02-12
 LABEL maintainer "it@eltiempo.es"
 LABEL version "1.0"
 LABEL description "Image with some cli tools for dev environment"
