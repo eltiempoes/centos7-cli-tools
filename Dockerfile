@@ -1,5 +1,5 @@
 FROM centos:7
-ENV REFRESHED_AT 2018-02-12
+ENV REFRESHED_AT 2018-02-15
 LABEL maintainer "it@eltiempo.es"
 LABEL version "1.0"
 LABEL description "Image with some cli tools for dev environment"
@@ -10,7 +10,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum -y --setopt=tsflags=nodocs update && \
     yum -y --setopt=tsflags=nodocs install epel-release && \
     yum -y --setopt=tsflags=nodocs install nginx net-tools vim mariadb wget curl && \
-    yum -y --setopt=tsflags=nodocs install php71w php71w-cli php71w-gd php71w-mbstring php71w-mysqlnd php71w-opcache php71w-pdo php71w-xml php71w-pecl-xdebug php71w-imap php71w-tidy php71w-xmlrpc php71w-soap php71w-mcrypt php71w-intl && \
+    yum -y --setopt=tsflags=nodocs install php71w php71w-cli php71w-gd php71w-mbstring php71w-mysqlnd php71w-opcache php71w-pdo php71w-xml php71w-pecl-xdebug php71w-imap php71w-tidy php71w-xmlrpc php71w-soap php71w-mcrypt php71w-intl php71w-pecl-mongodb php71w-pecl-redis && \
     yum -y --setopt=tsflags=nodocs groupinstall 'Development Tools' && \
     yum clean all
 
