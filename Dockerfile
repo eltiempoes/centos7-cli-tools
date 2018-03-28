@@ -10,7 +10,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum -y --setopt=tsflags=nodocs update && \
     yum -y --setopt=tsflags=nodocs install epel-release && \
     yum -y --setopt=tsflags=nodocs install nginx net-tools vim mariadb wget curl && \
-    yum -y --setopt=tsflags=nodocs install php71w php71w-cli php71w-gd php71w-mbstring php71w-mysqlnd php71w-opcache php71w-pdo php71w-xml php71w-pecl-xdebug php71w-imap php71w-tidy php71w-xmlrpc php71w-soap php71w-mcrypt php71w-intl && \
+    yum -y --setopt=tsflags=nodocs install php71w php71w-cli php71w-gd php71w-mbstring php71w-mysqlnd php71w-opcache php71w-pdo php71w-xml php71w-pecl-xdebug php71w-imap php71w-tidy php71w-xmlrpc php71w-soap php71w-mcrypt php71w-intl php71w-pecl-redis && \
     yum -y --setopt=tsflags=nodocs groupinstall 'Development Tools' && \
     yum clean all
 
@@ -27,7 +27,7 @@ RUN curl -L -s https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit &&
     chmod +x /usr/local/bin/phpunit
 
 RUN groupadd --gid 1000 cli-user && \
-	adduser -u 1000 -g 1000 cli-user 
+	adduser -u 1000 -g 1000 cli-user
 
 RUN yum -y --setopt=tsflags=nodocs install sudo
 
