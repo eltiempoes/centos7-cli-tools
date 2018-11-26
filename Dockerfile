@@ -26,6 +26,9 @@ RUN curl -L -s http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -o /usr/lo
 RUN curl -L -s https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit
 
+RUN curl -L -s https://codeception.com/codecept.phar -o /usr/local/bin/codecept && \
+    chmod +x /usr/local/bin/codecept
+
 RUN groupadd --gid 1000 cli-user && \
 	adduser -u 1000 -g 1000 cli-user 
 
@@ -37,7 +40,7 @@ RUN echo "cli-user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/cli-user && \
 USER cli-user
 ENV NVM_DIR /home/cli-user/nvm
 ENV NODE_VERSION v7.4.0
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash && \
 	source $NVM_DIR/nvm.sh && \
 	nvm install $NODE_VERSION && \
 	nvm alias default $NODE_VERSION && \
