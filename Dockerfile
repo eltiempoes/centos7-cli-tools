@@ -1,5 +1,6 @@
 FROM centos:7
-ENV REFRESHED_AT 2018-02-12
+ENV REFRESHED_AT 2019-02-25
+
 LABEL maintainer "it@eltiempo.es"
 LABEL version "1.2"
 LABEL description "Image with some cli tools for dev environment"
@@ -26,6 +27,9 @@ RUN curl -L -s http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -o /usr/lo
 RUN curl -L -s https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit
 
+RUN curl -L -s https://codeception.com/codecept.phar -o /usr/local/bin/codecept && \
+    chmod +x /usr/local/bin/codecept
+
 RUN groupadd --gid 1000 cli-user && \
 	adduser -u 1000 -g 1000 cli-user 
 
@@ -35,9 +39,10 @@ RUN echo "cli-user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/cli-user && \
     chmod 0440 /etc/sudoers.d/cli-user
 
 USER cli-user
+RUN mkdir /home/cli-user/nvm
 ENV NVM_DIR /home/cli-user/nvm
-ENV NODE_VERSION v7.4.0
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
+ENV NODE_VERSION v8.10.0
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash && \
 	source $NVM_DIR/nvm.sh && \
 	nvm install $NODE_VERSION && \
 	nvm alias default $NODE_VERSION && \
