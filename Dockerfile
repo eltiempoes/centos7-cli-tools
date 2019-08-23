@@ -40,7 +40,7 @@ RUN echo "cli-user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/cli-user && \
 USER cli-user
 RUN mkdir /home/cli-user/nvm
 ENV NVM_DIR /home/cli-user/nvm
-ENV NODE_VERSION v8.10.0
+ENV NODE_VERSION v11.10.0
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash && \
 	source $NVM_DIR/nvm.sh && \
 	nvm install $NODE_VERSION && \
