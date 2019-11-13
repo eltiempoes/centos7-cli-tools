@@ -2,7 +2,7 @@
 
 This Docker image is intended to be used as a general command-line tools image. It contains:
 
-* php-cli 7.0.17
+* php-cli 7.2.17
 * node version 6.9.0
 * npm version 3.10.8
 * bower
