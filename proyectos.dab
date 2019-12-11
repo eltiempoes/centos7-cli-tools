@@ -1,0 +1,119 @@
+{
+  "Services": {
+    "clima_db": {
+      "Env": [
+        "MYSQL_ROOT_PASSWORD=secret"
+      ],
+      "Image": "mysql@sha256:e2388e706b4e90b2f558126f98eda5b38fc36c9d220468a10535778e28707e2f",
+      "Networks": [
+        "developer_network"
+      ],
+      "Ports": [
+        {
+          "Port": 3306,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "clima_sphinx": {
+      "Args": [
+        "/usr/bin/sh",
+        "/usr/local/bin/wait-for-db.sh",
+        "clima_db"
+      ],
+      "Image": "eltiempoes/centos7-sphinx@sha256:deb9314cdf51ca77807c596b95dd7c41eff3f58d992f0fd175e0bc589afdec74",
+      "Networks": [
+        "developer_network"
+      ]
+    },
+    "eltiempo_db": {
+      "Env": [
+        "MYSQL_ROOT_PASSWORD=secret"
+      ],
+      "Image": "mysql@sha256:e2388e706b4e90b2f558126f98eda5b38fc36c9d220468a10535778e28707e2f",
+      "Networks": [
+        "developer_network"
+      ],
+      "Ports": [
+        {
+          "Port": 3306,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "eltiempo_editor": {
+      "Env": [
+        "APP_ENV=local"
+      ],
+      "Image": "eltiempoes/centos7-nginx-fpm@sha256:8794a732af27500f329910b7e5332e7aede7e7fe41747b4f1fedf7a15668955d",
+      "Networks": [
+        "developer_network"
+      ],
+      "Ports": [
+        {
+          "Port": 8080,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "eltiempo_search": {
+      "Env": [
+        "discovery.type=single-node",
+        "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      ],
+      "Image": "docker.elastic.co/elasticsearch/elasticsearch@sha256:ab3884396356595a665b88fbf61d4f0c1c39eb8891c77b1b72d5fe83ae3a1c75",
+      "Networks": [
+        "developer_network"
+      ],
+      "Ports": [
+        {
+          "Port": 9200,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "eltiempo_sphinx": {
+      "Args": [
+        "/usr/bin/sh",
+        "/usr/local/bin/wait-for-db.sh",
+        "eltiempo_db"
+      ],
+      "Image": "eltiempoes/centos7-sphinx@sha256:deb9314cdf51ca77807c596b95dd7c41eff3f58d992f0fd175e0bc589afdec74",
+      "Networks": [
+        "developer_network"
+      ]
+    },
+    "redis": {
+      "Image": "redis@sha256:7b0a40301bc1567205e6461c5bf94c38e1e1ad0169709e49132cafc47f6b51f3",
+      "Networks": [
+        "developer_network"
+      ],
+      "Ports": [
+        {
+          "Port": 6379,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "webserver": {
+      "Env": [
+        "APP_ENV=local"
+      ],
+      "Image": "eltiempoes/centos7-nginx-fpm@sha256:8794a732af27500f329910b7e5332e7aede7e7fe41747b4f1fedf7a15668955d",
+      "Networks": [
+        "developer_network"
+      ],
+      "Ports": [
+        {
+          "Port": 80,
+          "Protocol": "tcp"
+        },
+        {
+          "Port": 443,
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "Version": "0.1"
+}

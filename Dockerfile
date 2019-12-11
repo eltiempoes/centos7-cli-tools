@@ -1,7 +1,7 @@
 FROM centos:7
-ENV REFRESHED_AT 2019-02-25
+ENV REFRESHED_AT 2019-12-11
 LABEL maintainer "it@eltiempo.es"
-LABEL version "1.1"
+LABEL version "1.1.1"
 LABEL description "Image with some cli tools for dev environment"
 ENV container docker
 
@@ -10,7 +10,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum -y --setopt=tsflags=nodocs update && \
     yum -y --setopt=tsflags=nodocs install epel-release && \
     yum -y --setopt=tsflags=nodocs install nginx net-tools vim mariadb wget curl && \
-    yum -y --setopt=tsflags=nodocs install php72w php72w-cli php72w-gd php72w-mbstring php72w-mysqlnd php72w-opcache php72w-pdo php72w-xml php72w-pecl-xdebug php72w-imap php72w-tidy php72w-xmlrpc php72w-soap php72w-mcrypt php72w-intl && \
+    yum -y --setopt=tsflags=nodocs install php73w php73w-cli php73w-gd php73w-mbstring php73w-mysqlnd php73w-opcache php73w-pdo php73w-xml php73w-pecl-xdebug php73w-imap php73w-tidy php73w-xmlrpc php73w-soap php73w-mcrypt php73w-intl && \
     yum -y --setopt=tsflags=nodocs groupinstall 'Development Tools' && \
     yum clean all
 
