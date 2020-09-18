@@ -14,7 +14,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum-config-manager --enable remi-php74 && \
     yum -y --setopt=tsflags=nodocs install epel-release && \
     yum -y --setopt=tsflags=nodocs install nginx net-tools vim mariadb wget curl && \
-    yum -y --setopt=tsflags=nodocs install php php-cli php-gd php-mbstring php-mysqlnd php-opcache php-pdo php-xml php-pecl-xdebug php-imap php-tidy php-xmlrpc php-soap php-mcrypt php-intl && \
+    yum -y --setopt=tsflags=nodocs install php php-cli php-gd php-mbstring php-mysqlnd php-opcache php-pdo php-xml php-pecl-xdebug php-imap php-tidy php-xmlrpc php-soap php-mcrypt php-intl php-pecl-zip && \
     yum -y --setopt=tsflags=nodocs groupinstall 'Development Tools' && \
     yum clean all
 
