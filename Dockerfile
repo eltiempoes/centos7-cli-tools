@@ -1,7 +1,7 @@
 FROM centos:7
 ENV REFRESHED_AT 2019-06-24
 LABEL maintainer "it@eltiempo.es"
-LABEL version "1.2"
+LABEL version "1.3"
 LABEL description "Image with some cli tools for dev environment"
 ENV container docker
 
@@ -21,7 +21,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
 RUN yum -y --setopt=tsflags=nodocs install grib_api && \
     yum clean all
 
-RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
+RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer --version=2.0.12 
 
 RUN curl -L -s http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer && \
     chmod +x /usr/local/bin/php-cs-fixer
