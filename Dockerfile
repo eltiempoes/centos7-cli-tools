@@ -1,13 +1,14 @@
 FROM centos:7
-ENV REFRESHED_AT 2019-06-24
+ENV REFRESHED_AT 2021-08-16
 LABEL maintainer "it@eltiempo.es"
-LABEL version "1.2"
+LABEL version "1.3"
 LABEL description "Image with some cli tools for dev environment"
 ENV container docker
 
 RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
     rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm && \
     rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
+    rpm -Uvh http://www.city-fan.org/ftp/contrib/yum-repo/rhel7/x86_64/city-fan.org-release-2-1.rhel7.noarch.rpm && \
     yum -y --setopt=tsflags=nodocs update && \
     yum -y --setopt=tsflags=nodocs upgrade && \
     yum -y install yum-utils && \
@@ -16,6 +17,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum -y --setopt=tsflags=nodocs install nginx net-tools vim mariadb wget curl && \
     yum -y --setopt=tsflags=nodocs install php php-cli php-gd php-mbstring php-mysqlnd php-opcache php-pdo php-xml php-pecl-xdebug php-imap php-tidy php-xmlrpc php-soap php-mcrypt php-intl php-pecl-zip && \
     yum -y --setopt=tsflags=nodocs groupinstall 'Development Tools' && \
+    yum -y --setopt=tsflags=nodocs --enablerepo=city-fan.org install libcurl && \
     yum clean all
 
 RUN yum -y --setopt=tsflags=nodocs install grib_api && \
@@ -23,7 +25,7 @@ RUN yum -y --setopt=tsflags=nodocs install grib_api && \
 
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer --version=1.10.1    
 
-RUN curl -L -s http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -o /usr/local/bin/php-cs-fixer && \
+RUN curl -L -s https://cs.symfony.com/download/php-cs-fixer-v3.phar -o /usr/local/bin/php-cs-fixer && \
     chmod +x /usr/local/bin/php-cs-fixer
 
 RUN curl -L -s https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit && \
