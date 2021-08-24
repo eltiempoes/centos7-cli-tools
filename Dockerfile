@@ -1,7 +1,7 @@
 FROM centos:7
-ENV REFRESHED_AT 2021-08-16
+ENV REFRESHED_AT 2021-08-24
 LABEL maintainer "it@eltiempo.es"
-LABEL version "1.3"
+LABEL version "1.4"
 LABEL description "Image with some cli tools for dev environment"
 ENV container docker
 
